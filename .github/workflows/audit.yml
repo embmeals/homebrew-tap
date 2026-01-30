@@ -1,0 +1,24 @@
+name: Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  audit:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tap locally
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/embmeals/homebrew-tap"
+          cp -r . "$(brew --repository)/Library/Taps/embmeals/homebrew-tap"
+
+      - name: Audit formula
+        run: brew audit --strict --formula terminal-dashboard
+
+      - name: Style check
+        run: brew style embmeals/tap/terminal-dashboard
