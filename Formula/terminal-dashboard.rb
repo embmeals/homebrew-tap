@@ -5,8 +5,6 @@ class TerminalDashboard < Formula
   sha256 "0bcad5050e2e1b6730f1d2c37be43abb78d37aa42bb4a7fc980aed8da84c7592"
   license "MIT"
 
-  depends_on "curl"
-  depends_on "python3"
   depends_on :macos
 
   def install
